@@ -1,4 +1,4 @@
-import './App.css';
+import './styles/App.css';
 import NavBar from './components/NavBar';
 import ProductTable from './components/ProductTable';
 

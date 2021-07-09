@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/product.css';
 class Product extends React.Component {
   // constructor(props) {
   //   super(props)
@@ -23,15 +24,20 @@ class Product extends React.Component {
 
   render() {
     console.log('product props obj: ', this.props);
-    let stockedString = this.props.stocked === true ? 'yes' : 'no'
+    let stockedString = this.props.stocked === true ? 'In Stock' : 'Out of Stock'
     
     return (
-      <div key={this.props.name}>
-        <button>+</button>
-        <button>-</button>
-        <h2>{this.props.name}</h2>
-        <p>{this.props.price}</p>
-        <p>In stock? {stockedString}</p>
+      <div key={this.props.name} className="productItemWrapper">
+        <div className="productInfoWrapper">
+          <p className="productInfo">{this.props.name}</p>
+          <p className="productInfo">({this.props.price})</p>
+          <p className="productInfo">{stockedString}</p>
+        </div>
+        
+        <div className="counterButtonWrapper">
+          <button className="counterButton">+</button>
+          <button className="counterButton">-</button>
+        </div>
       </div>
     );
   }
