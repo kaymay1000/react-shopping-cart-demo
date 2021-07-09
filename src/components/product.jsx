@@ -1,5 +1,7 @@
 import React from 'react';
-const Product = () => {
+import '../styles/product.css';
+
+const Product = (props) => {
   // constructor(props) {
   //   super(props)
   //   this.state = { count: 0 }
@@ -21,14 +23,14 @@ const Product = () => {
   //   console.log('new count: ', this.state.count);
   // }
 
-  console.log('product props obj: ', this.props);
-  let stockedString = this.props.stocked === true ? 'In Stock' : 'Out of Stock'
+  console.log('product props obj: ', props);
+  let stockedString = props.stocked === true ? 'In Stock' : 'Out of Stock'
   
   return (
-    <div key={this.props.name} className="productItemWrapper">
+    <div key={props.name} className="productItemWrapper">
       <div className="productInfoWrapper">
-        <p className="productInfo">{this.props.name}</p>
-        <p className="productInfo">({this.props.price})</p>
+        <p className="productInfo">{props.name}</p>
+        <p className="productInfo">({props.price})</p>
         <p className="productInfo">{stockedString}</p>
       </div>
       
