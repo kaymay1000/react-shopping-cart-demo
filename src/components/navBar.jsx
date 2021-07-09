@@ -1,11 +1,11 @@
 import React from 'react';
-import NavItem from './NavItem';
+import CartNavItem from './CartNavItem';
 
 class NavBar extends React.Component {
   render() {
     return (
       <div>
-        <NavItem/>
+        <CartNavItem/>
       </div>
     )
   }
