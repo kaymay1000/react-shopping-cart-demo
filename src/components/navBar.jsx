@@ -1,5 +1,5 @@
 import React from 'react';
-import NavItem from './navItem';
+import NavItem from './NavItem';
 
 class NavBar extends React.Component {
   render() {
