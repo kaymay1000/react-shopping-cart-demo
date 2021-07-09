@@ -1,6 +1,5 @@
 import React from 'react';
-import '../styles/product.css';
-class Product extends React.Component {
+const Product = () => {
   // constructor(props) {
   //   super(props)
   //   this.state = { count: 0 }
@@ -22,25 +21,23 @@ class Product extends React.Component {
   //   console.log('new count: ', this.state.count);
   // }
 
-  render() {
-    console.log('product props obj: ', this.props);
-    let stockedString = this.props.stocked === true ? 'In Stock' : 'Out of Stock'
-    
-    return (
-      <div key={this.props.name} className="productItemWrapper">
-        <div className="productInfoWrapper">
-          <p className="productInfo">{this.props.name}</p>
-          <p className="productInfo">({this.props.price})</p>
-          <p className="productInfo">{stockedString}</p>
-        </div>
-        
-        <div className="counterButtonWrapper">
-          <button className="counterButton">+</button>
-          <button className="counterButton">-</button>
-        </div>
+  console.log('product props obj: ', this.props);
+  let stockedString = this.props.stocked === true ? 'In Stock' : 'Out of Stock'
+  
+  return (
+    <div key={this.props.name} className="productItemWrapper">
+      <div className="productInfoWrapper">
+        <p className="productInfo">{this.props.name}</p>
+        <p className="productInfo">({this.props.price})</p>
+        <p className="productInfo">{stockedString}</p>
       </div>
-    );
-  }
+      
+      <div className="counterButtonWrapper">
+        <button className="counterButton">+</button>
+        <button className="counterButton">-</button>
+      </div>
+    </div>
+  );
 }
 
 export default Product;
