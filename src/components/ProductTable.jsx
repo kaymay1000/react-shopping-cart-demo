@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Product from './Product';
 import '../styles/productTable.css';
 
@@ -13,9 +13,6 @@ const PRODUCTS = [
 const ProductTable = () => {
   // useState hook replaces need for call to setState()
   let [inStockOnly, setInStockOnly] = useState(false);
-  // update inStockOnly state variable based on its current value
-  const toggleInStockOnly = () => { setInStockOnly(!inStockOnly) };
-  console.log('inStockOnly: ', inStockOnly);
   
   const allProducts = PRODUCTS.map((product) => {
     return <Product key={product.name} name={product.name} price={product.price} stocked={product.stocked}/>
@@ -24,7 +21,7 @@ const ProductTable = () => {
   let productsToShow = inStockOnly === true ? inStockProducts : allProducts;
 
   // example of how to pass css to the style attribute in React... css properties must be camelCased and stored in a JS object, then injected into JSX
-  let checkboxStyle = {marginLeft: '10px'}
+  let checkboxStyle = {marginLeft: '10px'};
 
   return (
     <div className="productTableHeaderWrapper">
@@ -33,7 +30,10 @@ const ProductTable = () => {
         id="inStockOnly" 
         type="checkbox" 
         defaultChecked={false} 
-        onChange={toggleInStockOnly}
+        onChange={() => {
+          // toggle inStockOnly state variable to the opposite of its current value
+          setInStockOnly(!inStockOnly);
+        }}
       />
       <label htmlFor="inStockOnly" style={checkboxStyle}>Only show in-stock items</label>
       

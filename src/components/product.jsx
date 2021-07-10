@@ -14,24 +14,25 @@ const Product = (props) => {
       </div>
       
       <div className="counterButtonWrapper">
-        <button 
-          onClick={() => {
-            count++
-            setCount(count);
-            }} 
-          className="counterButton"
-        >
-            +
-        </button>
         <button
           onClick={() => {
             count--
-            setCount(count);
-          }} 
+            setCount(count)
+          }}
           className="counterButton"
           disabled={count === 0 ? true : false}
         >
             -
+        </button>
+        <button 
+          onClick={() => {
+            count++
+            setCount(count)
+          }}
+          className="counterButton"
+          disabled={props.stocked === false ? true : false}
+        >
+            +
         </button>
         <div className="totalProducts">Total: {count}</div>
       </div>
