@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Product from './Product';
 import '../styles/productTable.css';
 
@@ -10,30 +10,38 @@ const PRODUCTS = [
   { name: 'Mango', price: '$2.00', stocked: false }
 ];
 
-const ProductTable = (props) => {
-  let productItems = PRODUCTS.map((product) => {
+const ProductTable = () => {
+  // useState hook replaces need for call to setState()
+  let [inStockOnly, setInStockOnly] = useState(false);
+  // update inStockOnly state variable based on its current value
+  const toggleInStockOnly = () => { setInStockOnly(!inStockOnly) };
+  console.log('inStockOnly: ', inStockOnly);
+  
+  const allProducts = PRODUCTS.map((product) => {
     return <Product key={product.name} name={product.name} price={product.price} stocked={product.stocked}/>
   });
+  const inStockProducts = allProducts.filter(product => product.props.stocked);
+  let productsToShow = inStockOnly === true ? inStockProducts : allProducts;
 
-  // const inStockOnly = props.inStockOnly;
-
-  // const inStockProducts = productItems.forEach((product) => {
-  //   if (inStockOnly && !product.stocked) {
-  //     return
-  //   } 
-
-  //   return (
-  //     <div className="productsTableWrapper">
-  //       <div className="productTable">{productItems}</div>
-  //     </div>
-  //   )
-  // })
-
-  // return inStockProducts;
+  // example of how to pass css to the style attribute in React... css properties must be camelCased and stored in a JS object, then injected into JSX
+  let checkboxStyle = {marginLeft: '10px'}
 
   return (
-    <div className="productsTableWrapper">
-      <div className="productTable">{productItems}</div>
+    <div className="productTableHeaderWrapper">
+      <h1>Products</h1>
+      <input 
+        id="inStockOnly" 
+        type="checkbox" 
+        defaultChecked={false} 
+        onChange={toggleInStockOnly}
+      />
+      <label htmlFor="inStockOnly" style={checkboxStyle}>Only show in-stock items</label>
+      
+      <div className="productsTableWrapper">
+      <div className="productTable">
+        {productsToShow}
+      </div>
+    </div>
     </div>
   )
 }

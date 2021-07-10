@@ -18,7 +18,6 @@ const Product = (props) => {
           onClick={() => {
             count++
             setCount(count);
-            console.log(props.name, count);
             }} 
           className="counterButton"
         >
@@ -28,7 +27,6 @@ const Product = (props) => {
           onClick={() => {
             count--
             setCount(count);
-            console.log(props.name, count);
           }} 
           className="counterButton"
           disabled={count === 0 ? true : false}
