@@ -20,7 +20,8 @@ const Product = (props) => {
             setCount(count);
             console.log(props.name, count);
             }} 
-          className="counterButton">
+          className="counterButton"
+        >
             +
         </button>
         <button
@@ -29,7 +30,9 @@ const Product = (props) => {
             setCount(count);
             console.log(props.name, count);
           }} 
-          className="counterButton">
+          className="counterButton"
+          disabled={count === 0 ? true : false}
+        >
             -
         </button>
         <div className="totalProducts">Total: {count}</div>
