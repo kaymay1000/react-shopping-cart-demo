@@ -11,32 +11,11 @@ const PRODUCTS = [
 ];
 
 const ProductTable = (props) => {
-  // useState hook replaces need for call to setState()
+  // QUESTION: is it best practice to initialize state within a child component, if that child component is the only place it will be used (i.e. other components don't need to know about it/its current value?)
+  // or is it best practice to initialize state as high up the hierarchy/as globally as possible (i.e. ProductPage) and pass it down as far as it needs to go (in this case, just down one level to this file)?
+  // second option seems to defeat the purpose of creating ProductPage in the first place (other than to handle count state)?
   // let [inStockOnly, setInStockOnly] = useState(false);
-  // let [count, setCount] = useState(0);
   console.log('product table props: ', props);
-
-  // const handleIncrement = () => {
-  //   console.log('props in handle inc', props);
-  //   props.count++;
-  //   props.setCount(props.count);
-  // }
-
-  // const handleDecrement = () => {
-  //   console.log('props in handle dec', props);
-  //   props.count--;
-  //   props.setCount(props.count);
-  // }
-
-  // const handleIncrement = (productCount) => {
-  //   productCount++;
-  //   setCount(productCount);
-  // }
-
-  // const handleDecrement = (productCount) => {
-  //   productCount--;
-  //   setCount(productCount);
-  // }
 
   const allProducts = PRODUCTS.map((product) => {
     return <Product 
@@ -48,6 +27,9 @@ const ProductTable = (props) => {
       setCount={props.setCount}
       onIncrement={props.onIncrement}
       onDecrement={props.onDecrement}
+      // QUESTION: ditto from similar question on ProductPage (line 38)
+      // onIncrement={props.onIncrement(productCount)}
+      // onDecrement={props.onDecrement(productCount)}
     />
   });
 

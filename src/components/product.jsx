@@ -16,6 +16,7 @@ const Product = (props) => {
       <div className="counterButtonWrapper">
         <button
           onClick={props.onDecrement}
+          // QUESTION: what is wrong with my syntax here (and line 28)? my goal is to grab the current count (props.count) for an individual product, pass it up to ProductTable, and finally up to ProductPage
           // onClick={(props.count) => props.onDecrement(props.count)}
           className="counterButton"
           disabled={props.count === 0 ? true : false}
