@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../styles/product.css';
 
 const Product = (props) => {
-  let [count, setCount] = useState(0);
+  console.log('product props: ', props);
   let stockedValue = props.stocked === true ? 'In Stock' : 'Out of Stock';
   
   return (
@@ -15,26 +15,22 @@ const Product = (props) => {
       
       <div className="counterButtonWrapper">
         <button
-          onClick={() => {
-            count--
-            setCount(count)
-          }}
+          onClick={props.onDecrement}
+          // onClick={(props.count) => props.onDecrement(props.count)}
           className="counterButton"
-          disabled={count === 0 ? true : false}
+          disabled={props.count === 0 ? true : false}
         >
             -
         </button>
-        <button 
-          onClick={() => {
-            count++
-            setCount(count)
-          }}
+        <button
+          onClick={props.onIncrement}
+          // onClick={(props.count) => props.onIncrement(props.count)}
           className="counterButton"
-          disabled={props.stocked === false ? true : false}
+          // disabled={props.stocked === false ? true : false}
         >
             +
         </button>
-        <div className="totalProducts">Total: {count}</div>
+        <div className="totalProducts">Total: {props.count}</div>
       </div>
     </div>
   );
