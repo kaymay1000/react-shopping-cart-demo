@@ -1,14 +1,7 @@
 import {useState} from 'react';
 import Product from './Product';
+import PRODUCTS from '../data';
 import '../styles/productTable.css';
-
-const PRODUCTS = [
-  { name: 'Apple', price: '$0.79', stocked: true, count: 0 },
-  { name: 'Banana', price: '$0.50', stocked: true, count: 0 },
-  { name: 'Peach', price: '$0.85', stocked: false, count: 0 },
-  { name: 'Watermelon', price: '$1.50', stocked: true, count: 0 },
-  { name: 'Mango', price: '$2.00', stocked: false, count: 0 }
-];
 
 const ProductTable = (props) => {
   const [inStockOnly, setInStockOnly] = useState(false);
@@ -24,30 +17,16 @@ const ProductTable = (props) => {
       }
       return product;
     })
+    // replace products array (initial state) with newProducts array
+    setProducts(newProducts);
 
     const productsWithCount = newProducts.filter(product => product.count > 0);
     props.setCart(productsWithCount);
-    // replace products array (initial state) with newProducts array
-    setProducts(newProducts);
-     
   }
 
   const renderProducts = () => {
-    if (inStockOnly) {
-      return products.filter(product => product.stocked).map((product) => {
-        console.log(product)
-        return <Product 
-          key={product.name}
-          name={product.name}
-          price={product.price}
-          stocked={product.stocked}
-          count={product.count}
-          onUpdateCount={updateProductCount}
-        />
-      });
-    }
-    return products.map((product) => {
-      console.log(product)
+    // create wrapper function for products to be shown (depends on value of inStockOnly)
+    let productJSX = (product) => {
       return <Product 
         key={product.name}
         name={product.name}
@@ -55,8 +34,13 @@ const ProductTable = (props) => {
         stocked={product.stocked}
         count={product.count}
         onUpdateCount={updateProductCount}
-    />
-  })
+      />
+    }
+
+    // if inStockOnly is true, filter through 'products' array in state and only return products where stocked = true, then create a Product component for each
+    if (inStockOnly) {return products.filter(product => product.stocked).map((product) => {return productJSX(product)})}
+    // otherwise, inStockOnly is false, so return a Product component for each element in 'products' array in state
+    return products.map((product) => { return productJSX(product) })
 }
 
   // example of how to pass css to the style attribute in React... css properties must be camelCased and stored in a JS object, then injected into JSX
