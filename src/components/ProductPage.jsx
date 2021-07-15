@@ -7,9 +7,7 @@ const ProductPage = (props) => {
   return (
     <>
       <p>{cart.length}</p>
-      <ProductTable 
-        setCart={setCart}
-      />
+      <ProductTable setCart={setCart}/>
     </>
   )
 }

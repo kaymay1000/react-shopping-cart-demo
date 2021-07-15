@@ -8,7 +8,7 @@ const ProductTable = (props) => {
   const [products, setProducts] = useState(PRODUCTS);
 
   const updateProductCount = (updatedProductName, isIncremented) => {
-    // make a copy of array held in 'products' state variable using spread syntax (evaluates to the PRODUCTS array)
+    // make a copy of array held in PRODUCTS data blob using spread syntax
     const newProducts = [...products];
     // find the product whose count was updated
     newProducts.forEach(product => {
