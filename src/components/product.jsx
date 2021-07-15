@@ -1,5 +1,4 @@
-import React from 'react';
-import { createPortal } from 'react-dom';
+// import React from 'react';
 import '../styles/product.css';
 
 const Product = (props) => {
@@ -16,14 +15,14 @@ const Product = (props) => {
         <button
           onClick={() => props.onUpdateCount(props.name, false)}
           className="counterButton"
-          // disabled={props.count === 0}
+          disabled={props.count === 0}
         >
             -
         </button>
         <button
           onClick={() => props.onUpdateCount(props.name, true)}
           className="counterButton"
-          // disabled={!props.stocked}
+          disabled={!props.stocked}
         >
             +
         </button>

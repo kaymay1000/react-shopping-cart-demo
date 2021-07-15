@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import Product from './Product';
 import '../styles/productTable.css';
-import { isCompositeComponentWithType } from 'react-dom/test-utils';
 
 const PRODUCTS = [
   { name: 'Apple', price: '$0.79', stocked: true, count: 0 },
@@ -26,8 +25,11 @@ const ProductTable = (props) => {
       return product;
     })
 
-     // replace products array (initial state) with newProducts array
-     setProducts(newProducts);
+    const productsWithCount = newProducts.filter(product => product.count > 0);
+    props.setCart(productsWithCount);
+    // replace products array (initial state) with newProducts array
+    setProducts(newProducts);
+     
   }
 
   const renderProducts = () => {
