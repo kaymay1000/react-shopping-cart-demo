@@ -35,7 +35,7 @@ const CartAppContainer = (props) => {
   }, []);
 
   if (!products || isLoading) { return <p>Loading...</p> }
-  
+
   return (
     <>
       <NavBar cart={cart}/>
