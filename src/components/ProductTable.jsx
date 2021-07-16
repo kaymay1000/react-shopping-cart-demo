@@ -35,15 +35,15 @@ const ProductTable = (props) => {
 
     return productsToRender.map((product) => {
       return (
-      <Product 
-        key={product.name}
-        name={product.name}
-        price={product.price}
-        stocked={product.stocked}
-        count={product.count}
-        onUpdateCount={updateProductCount}
-        onUpdateCart={props.onUpdateCart}
-      />
+        <Product 
+          key={product.name}
+          name={product.name}
+          price={product.price}
+          stocked={product.stocked}
+          count={product.count}
+          onUpdateCount={updateProductCount}
+          onUpdateCart={props.onUpdateCart}
+        />
       )
     })
   }
@@ -58,12 +58,11 @@ const ProductTable = (props) => {
         onChange={() => setInStockOnly(!inStockOnly)}
       />
       <label htmlFor="inStockOnly" style={checkboxStyle}>Only show in-stock items</label>
-      
       <div className="productsTableWrapper">
-      <div className="productTable">
-        {renderProducts()}
+        <div className="productTable">
+          {renderProducts()}
+        </div>
       </div>
-    </div>
     </div>
   )
 }

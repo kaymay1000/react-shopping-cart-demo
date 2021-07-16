@@ -34,15 +34,12 @@ const CartAppContainer = (props) => {
     fetchData();
   }, []);
 
+  if (!products || isLoading) { return <p>Loading...</p> }
+  
   return (
     <>
       <NavBar cart={cart}/>
-      <div>
-        {isLoading ? 
-        <p>Loading...</p> : 
-        <ProductTable products={products} setProducts={setProducts} setCart={setCart} onUpdateCart={updateCartCount}/>}
-      </div>
-      {/* <ProductTable products={products} setProducts={setProducts} setCart={setCart} onUpdateCart={updateCartCount}/> */}
+      <ProductTable products={products} setProducts={setProducts} setCart={setCart} onUpdateCart={updateCartCount}/>
     </>
   )
 }
