@@ -1,11 +1,10 @@
-import React from 'react';
 import CartNavItem from './CartNavItem';
 import '../styles/navBar.css';
 
-const NavBar = () => {
+const NavBar = (props) => {
   return (
     <div className="navBarWrapper">
-      <CartNavItem/>
+      <CartNavItem cart={props.cart}/>
     </div>
   )
 }

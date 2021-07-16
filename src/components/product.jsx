@@ -1,41 +1,38 @@
-import React, { useState } from 'react';
 import '../styles/product.css';
 
 const Product = (props) => {
-  let [count, setCount] = useState(0);
-  let stockedValue = props.stocked === true ? 'In Stock' : 'Out of Stock';
-  
   return (
     <div key={props.name} className="productItemWrapper">
       <div className="productInfoWrapper">
         <p className="productInfo">{props.name}</p>
         <p className="productInfo">({props.price})</p>
-        <p className="productInfo">{stockedValue}</p>
+        <p className="productInfo">{props.stocked ? 'In Stock' : 'Out of Stock'}</p>
       </div>
       
       <div className="counterButtonWrapper">
         <button
           onClick={() => {
-            count--
-            setCount(count)
+            // call two event handlers for the same event by wrapping in an arrow function
+            props.onUpdateCount(props.name, false);
+            props.onUpdateCart();
           }}
           className="counterButton"
-          disabled={count === 0 ? true : false}
+          disabled={props.count === 0}
         >
             -
         </button>
-        <button 
+        <button
           onClick={() => {
-            count++
-            setCount(count)
+            props.onUpdateCount(props.name, true);
+            props.onUpdateCart();
           }}
           className="counterButton"
-          disabled={props.stocked === false ? true : false}
+          disabled={!props.stocked}
         >
             +
         </button>
-        <div className="totalProducts">Total: {count}</div>
-      </div>
+        <div className="totalProducts">Total: {props.count}</div>
+      </div> 
     </div>
   );
 }
