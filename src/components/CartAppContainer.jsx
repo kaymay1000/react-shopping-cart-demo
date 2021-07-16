@@ -6,11 +6,13 @@ import ProductTable from './ProductTable';
 const CartAppContainer = (props) => {
   const [cart, setCart] = useState(0);
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = async () => {
     const response = await FETCH_DATA().then(res => res);
     if (response) {
       setProducts(response);
+      setIsLoading(false);
     }
   }
 
@@ -35,7 +37,12 @@ const CartAppContainer = (props) => {
   return (
     <>
       <NavBar cart={cart}/>
-      <ProductTable products={products} setProducts={setProducts} setCart={setCart} onUpdateCart={updateCartCount}/>
+      <div>
+        {isLoading ? 
+        <p>Loading...</p> : 
+        <ProductTable products={products} setProducts={setProducts} setCart={setCart} onUpdateCart={updateCartCount}/>}
+      </div>
+      {/* <ProductTable products={products} setProducts={setProducts} setCart={setCart} onUpdateCart={updateCartCount}/> */}
     </>
   )
 }
