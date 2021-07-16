@@ -1,8 +1,7 @@
-const CartNavItem = () => {
+const CartNavItem = (props) => {
   return (
     <div>
-      <button>My Cart</button>
-      {/* <button>My Cart ({})</button> */}
+      <button>My Cart ({props.cart})</button>
     </div>
   )
 }
