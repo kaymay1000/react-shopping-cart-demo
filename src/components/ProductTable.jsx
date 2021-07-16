@@ -16,12 +16,23 @@ const ProductTable = (props) => {
         isIncremented ? product.count++ : product.count--;
       }
       return product;
-    })
+    });
     // replace products array (initial state) with newProducts array
     setProducts(newProducts);
+  }
 
+  const updateCartCount = () => {
+    // make a copy of array held in PRODUCTS data blob using spread syntax
+    const newProducts = [...products];
+    // grab all products that have a count of at least 1
     const productsWithCount = newProducts.filter(product => product.count > 0);
-    props.setCart(productsWithCount);
+    // initialize a variable to keep track of total products in cart, 
+    // add up all current product count and update 'cart' state variable with the sum
+    let totalProductsInCart = 0;
+    productsWithCount.forEach(product => {
+      totalProductsInCart += product.count;
+    });
+    props.setCart(totalProductsInCart);
   }
 
   const renderProducts = () => {
@@ -34,6 +45,7 @@ const ProductTable = (props) => {
         stocked={product.stocked}
         count={product.count}
         onUpdateCount={updateProductCount}
+        onUpdateCart={updateCartCount}
       />
     }
 

@@ -1,4 +1,3 @@
-// import React from 'react';
 import '../styles/product.css';
 
 const Product = (props) => {
@@ -13,14 +12,21 @@ const Product = (props) => {
       
       <div className="counterButtonWrapper">
         <button
-          onClick={() => props.onUpdateCount(props.name, false)}
+          onClick={() => {
+            // call two event handlers for the same event by wrapping in an arrow function
+            props.onUpdateCount(props.name, false);
+            props.onUpdateCart();
+          }}
           className="counterButton"
           disabled={props.count === 0}
         >
             -
         </button>
         <button
-          onClick={() => props.onUpdateCount(props.name, true)}
+          onClick={() => {
+            props.onUpdateCount(props.name, true);
+            props.onUpdateCart();
+          }}
           className="counterButton"
           disabled={!props.stocked}
         >
