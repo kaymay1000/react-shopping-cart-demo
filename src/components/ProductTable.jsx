@@ -33,10 +33,7 @@ const ProductTable = (props) => {
       productsToRender = props.products;
     }
 
-    console.log('productsToRender: ', productsToRender);
-
     return productsToRender.map((product) => {
-      console.log(product.name);
       return (
       <Product 
         key={product.name}
