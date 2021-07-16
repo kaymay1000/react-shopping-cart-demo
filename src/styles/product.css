@@ -1,0 +1,20 @@
+.productItemWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.productInfoWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.productInfo {
+  padding: 5px;
+}
+
+.counterButton {
+  width: 30px;
+  height: 30px;
+  margin: 0 3px;
+}
