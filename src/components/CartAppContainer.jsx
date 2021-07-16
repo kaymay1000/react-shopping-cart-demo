@@ -1,11 +1,18 @@
-import {useState} from 'react';
-import PRODUCTS from '../data';
+import {useState, useEffect} from 'react';
+import FETCH_DATA from '../data';
 import NavBar from './NavBar';
 import ProductTable from './ProductTable';
 
 const CartAppContainer = (props) => {
   const [cart, setCart] = useState(0);
-  const [products, setProducts] = useState(PRODUCTS);
+  const [products, setProducts] = useState([]);
+
+  const fetchData = async () => {
+    const response = await FETCH_DATA().then(res => res);
+    if (response) {
+      setProducts(response);
+    }
+  }
 
   const updateCartCount = () => {
     // make a copy of array held in PRODUCTS data blob using spread syntax
@@ -20,6 +27,10 @@ const CartAppContainer = (props) => {
     });
     setCart(totalProductsInCart);
   }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <>

@@ -6,4 +6,21 @@ const PRODUCTS = [
   { name: 'Mango', price: '$2.00', stocked: false, count: 0 }
 ];
 
-export default PRODUCTS;
+const FETCH_DATA = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      try {
+        if (true) {
+          resolve(PRODUCTS);
+        } else {
+          reject('...rejected...');
+          throw new Error('...caught...');
+        }
+      } catch (error) {
+        console.error('ERROR: ', error.message);
+      }
+    }, 3000);
+  });
+};
+
+export default FETCH_DATA;
