@@ -1,7 +1,6 @@
 import '../styles/product.css';
 
 const Product = (props) => {
-  
   return (
     <div key={props.name} className="productItemWrapper">
       <div className="productInfoWrapper">

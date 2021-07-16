@@ -3,8 +3,9 @@ import Product from './Product';
 import '../styles/productTable.css';
 
 const ProductTable = (props) => {
-
   const [inStockOnly, setInStockOnly] = useState(false);
+  // example of how to pass css to the style attribute in React... css properties must be camelCased and stored in a JS object, then injected into JSX
+  const checkboxStyle = {marginLeft: '10px'};
 
   const updateProductCount = (updatedProductName, isIncremented) => {
     // make a copy of array held in PRODUCTS data blob using spread syntax
@@ -21,9 +22,23 @@ const ProductTable = (props) => {
   }
 
   const renderProducts = () => {
-    // create wrapper function for products to be shown (depends on value of inStockOnly)
-    let productJSX = (product) => {
-      return <Product 
+    let productsToRender = [];
+    
+    // if inStockOnly is true, filter through 'products' array in state and only return products where stocked = true, then set productToRender to filtered array
+    // otherwise, inStockOnly is false, so set productsToRender to everything in products array
+    // map over productsToRender to generate desired Products
+    if (inStockOnly) {
+      productsToRender = props.products.filter(product => product.stocked);
+    } else {
+      productsToRender = props.products;
+    }
+
+    console.log('productsToRender: ', productsToRender);
+
+    return productsToRender.map((product) => {
+      console.log(product.name);
+      return (
+      <Product 
         key={product.name}
         name={product.name}
         price={product.price}
@@ -32,16 +47,9 @@ const ProductTable = (props) => {
         onUpdateCount={updateProductCount}
         onUpdateCart={props.onUpdateCart}
       />
-    }
-
-    // if inStockOnly is true, filter through 'products' array in state and only return products where stocked = true, then create a Product component for each
-    if (inStockOnly) {return props.products.filter(product => product.stocked).map((product) => {return productJSX(product)})}
-    // otherwise, inStockOnly is false, so return a Product component for each element in 'products' array in state
-    return props.products.map((product) => { return productJSX(product) })
+      )
+    })
   }
-
-  // example of how to pass css to the style attribute in React... css properties must be camelCased and stored in a JS object, then injected into JSX
-  const checkboxStyle = {marginLeft: '10px'};
 
   return (
     <div className="productTableHeaderWrapper">

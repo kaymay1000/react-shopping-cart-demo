@@ -4,7 +4,7 @@ import NavBar from './NavBar';
 import ProductTable from './ProductTable';
 
 const CartAppContainer = (props) => {
-  let [cart, setCart] = useState(0);
+  const [cart, setCart] = useState(0);
   const [products, setProducts] = useState(PRODUCTS);
 
   const updateCartCount = () => {
@@ -24,7 +24,6 @@ const CartAppContainer = (props) => {
   return (
     <>
       <NavBar cart={cart}/>
-      {/* <p>{cart}</p> */}
       <ProductTable products={products} setProducts={setProducts} setCart={setCart} onUpdateCart={updateCartCount}/>
     </>
   )
