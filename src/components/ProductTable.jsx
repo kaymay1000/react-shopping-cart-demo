@@ -50,7 +50,6 @@ const ProductTable = (props) => {
 
   return (
     <div className="productTableHeaderWrapper">
-      <h1>Shop</h1>
       <input 
         id="inStockOnly" 
         type="checkbox" 

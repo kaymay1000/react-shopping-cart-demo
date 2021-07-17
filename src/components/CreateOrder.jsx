@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import FETCH_DATA from '../data';
 import ProductTable from './ProductTable';
 
-const Shop = (props) => {
+const CreateOrder = (props) => {
   const [cart, setCart] = useState(0);
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -40,12 +40,13 @@ const Shop = (props) => {
     <>
       <div className="send-right button-container">
         <Link to="/cart">
-          <button>My Cart ({cart})</button>
+          <button>Proceed to Cart ({cart})</button>
         </Link>
       </div>
+      <h1>Create Order</h1>
       <ProductTable products={products} setProducts={setProducts} setCart={setCart} onUpdateCart={updateCartCount}/>
     </>
   )
 }
 
-export default Shop;
+export default CreateOrder;

@@ -5,7 +5,8 @@ const OrderConf = (props) => {
   return (
     <>
       <div className="send-right button-container">
-        <Link to="/shop">
+        {/* on click of create new order button, wipe state of current order */}
+        <Link to="/create-order">
           <button>Create New Order</button>
         </Link>
       </div>

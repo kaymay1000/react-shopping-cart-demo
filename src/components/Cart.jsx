@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import Shop from './Shop';
+import Shop from './CreateOrder';
 
-const MyCart = (props) => {
+const Cart = (props) => {
   console.log('props: ', props);
   console.log('props.order: ', props.order);
   console.log('Shop: ', Shop);
@@ -10,14 +10,14 @@ const MyCart = (props) => {
   return (
     <>
       <div className="split button-container">
-        <Link to="/shop">
-          <button>Continue Shopping</button>
+        <Link to="/create-order">
+          <button>Revise Order</button>
         </Link>
         <Link to="/checkout">
-          <button>Checkout</button>
+          <button>Proceed to Checkout</button>
         </Link>
       </div>
-      <h1>My Cart</h1>
+      <h1>Cart</h1>
       <div className="send-left">
         <h3>Order Summary</h3>
       </div>
@@ -25,4 +25,4 @@ const MyCart = (props) => {
   )
 }
 
-export default MyCart;
+export default Cart;
