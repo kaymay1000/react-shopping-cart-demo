@@ -38,12 +38,11 @@ const Shop = (props) => {
 
   return (
     <>
-      <div className="button-right button-container">
+      <div className="send-right button-container">
         <Link to="/cart">
           <button>My Cart ({cart})</button>
         </Link>
       </div>
-     
       <ProductTable products={products} setProducts={setProducts} setCart={setCart} onUpdateCart={updateCartCount}/>
     </>
   )

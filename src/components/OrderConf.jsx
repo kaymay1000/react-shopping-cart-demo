@@ -4,7 +4,7 @@ import '../styles/layout.css';
 const OrderConf = (props) => {
   return (
     <>
-      <div className="button-right button-container">
+      <div className="send-right button-container">
         <Link to="/shop">
           <button>Create New Order</button>
         </Link>

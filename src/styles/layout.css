@@ -9,12 +9,17 @@
   margin: 25px 0;
 }
 
-.button-split {
+.split {
   display: flex;
   justify-content: space-between;
 }
 
-.button-right {
+.send-right {
   display: flex;
   justify-content: flex-end;
+}
+
+.send-left {
+  display: flex;
+  justify-content: flex-start
 }
