@@ -1,7 +1,11 @@
+import { Link } from 'react-router-dom';
+
 const CartNavItem = (props) => {
   return (
     <div>
-      <button>My Cart ({props.cart})</button>
+      <Link to="/cart">
+        <button>My Cart ({props.cart})</button>
+      </Link>
     </div>
   )
 }
