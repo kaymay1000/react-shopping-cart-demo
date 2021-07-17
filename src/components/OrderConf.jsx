@@ -2,12 +2,12 @@ import { Link } from 'react-router-dom';
 
 const OrderConf = (props) => {
   return (
-    <div>
-      <p>Order confirmed!</p>
-      <Link to="/products">
+    <>
+      <h1>Order confirmed!</h1>
+      <Link to="/shop">
         <button>Continue Shopping</button>
       </Link>
-    </div>
+    </>
   )
 } 
 

@@ -2,15 +2,17 @@ import { Link } from 'react-router-dom';
 
 const CustomerInfoForm = () => {
   return (
-    <div>
-      <p>I'll be a form eventually!</p>
-      <Link to="/products">
-        <button>Return to Products</button>
+    <>
+      <Link to="/cart">
+        <button>Return to Cart</button>
       </Link>
       <Link to="/order-conf">
         <button>Place Order</button>
       </Link>
-    </div>
+      <h1>Checkout</h1>
+      <h3>Billing</h3>
+      <h3>Shipping</h3>
+    </>
     
   )
 }
