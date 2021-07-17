@@ -38,9 +38,12 @@ const Shop = (props) => {
 
   return (
     <>
-      <Link to="/cart">
-        <button>My Cart ({cart})</button>
-      </Link>
+      <div className="button-right button-container">
+        <Link to="/cart">
+          <button>My Cart ({cart})</button>
+        </Link>
+      </div>
+     
       <ProductTable products={products} setProducts={setProducts} setCart={setCart} onUpdateCart={updateCartCount}/>
     </>
   )

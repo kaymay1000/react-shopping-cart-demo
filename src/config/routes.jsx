@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Shop from '../components/Shop';
 import MyCart from '../components/MyCart';
-import CustomerInfoForm from '../components/CustomerInfoForm';
+import Checkout from '../components/Checkout';
 import OrderConf from '../components/OrderConf';
 
 const Routes = (props) => {
@@ -10,7 +10,7 @@ const Routes = (props) => {
       <Switch>
         <Route exact path="/shop"><Shop/></Route>
         <Route path="/cart"><MyCart/></Route>
-        <Route path="/customer-info"><CustomerInfoForm/></Route>
+        <Route path="/checkout"><Checkout/></Route>
         <Route path="/order-conf"><OrderConf/></Route>
       </Switch>
     </BrowserRouter>

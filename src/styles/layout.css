@@ -4,3 +4,17 @@
   margin: 0 auto;
   text-align: center;
 }
+
+.button-container {
+  margin: 25px 0;
+}
+
+.button-split {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-right {
+  display: flex;
+  justify-content: flex-end;
+}
