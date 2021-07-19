@@ -1,12 +1,6 @@
 import { Link } from 'react-router-dom';
-import Shop from './CreateOrder';
 
 const Cart = (props) => {
-  console.log('props: ', props);
-  console.log('props.order: ', props.order);
-  console.log('Shop: ', Shop);
-
-  // const order = Shop;
   return (
     <>
       <div className="split button-container">
