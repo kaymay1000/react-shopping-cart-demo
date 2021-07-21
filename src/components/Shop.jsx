@@ -1,9 +1,9 @@
 import {useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
 import FETCH_DATA from '../data';
-import NavBar from './NavBar';
 import ProductTable from './ProductTable';
 
-const CartAppContainer = (props) => {
+const Shop = (props) => {
   const [cart, setCart] = useState(0);
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -38,10 +38,15 @@ const CartAppContainer = (props) => {
 
   return (
     <>
-      <NavBar cart={cart}/>
+      <div className="button-right button-container">
+        <Link to="/cart">
+          <button>My Cart ({cart})</button>
+        </Link>
+      </div>
+     
       <ProductTable products={products} setProducts={setProducts} setCart={setCart} onUpdateCart={updateCartCount}/>
     </>
   )
 }
 
-export default CartAppContainer;
+export default Shop;
