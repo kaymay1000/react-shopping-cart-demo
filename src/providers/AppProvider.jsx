@@ -23,13 +23,9 @@ const AppReducer = (state, action) => {
 }
 
 const initialState = {
-  // cart: {
-  //   count: 0
-  // },
+  // cart: 0
   products: [],
-  inStockOnly: {
-    active: false
-  }
+  inStockOnly: false
 }
 
 const AppProvider = ({children}) => {

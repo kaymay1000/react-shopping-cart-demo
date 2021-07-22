@@ -7,15 +7,16 @@ import ProductTable from './ProductTable';
 const CreateOrder = (props) => {
   const [state, dispatch] = useContext(AppContext);
   const [cart, setCart] = useState(0);
-  // const [products, setProducts] = useState([]);
-  // const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = async () => {
     const response = await FETCH_DATA().then(res => res);
     if (response) {
-      console.log('fetchData response: ', response)
-      state.products = response;
-      console.log('state.products in fetchData: ', state.products)
+      setIsLoading(false);
+      dispatch({
+        type: 'SET_PRODUCTS',
+        payload: response
+      })
     }
   }
 
@@ -41,9 +42,9 @@ const CreateOrder = (props) => {
     // })
     setCart(totalProductsInCart);
   }
-  
-  // if (!state.products || isLoading) { return <p>Loading...</p> }
-  if (!state.products) { return <p>Loading...</p> }
+
+  if (!state.products || isLoading) { return <p>Loading...</p> }
+  // if (!state.products) { return <p>Loading...</p> }
 
   return (
     <>
@@ -53,8 +54,7 @@ const CreateOrder = (props) => {
         </Link>
       </div>
       <h1>Create Order</h1>
-      {/* <ProductTable products={state.products} setProducts={setProducts} setCart={setCart} onUpdateCart={updateCartCount}/> */}
-      <ProductTable products={state.products} setCart={setCart} onUpdateCart={updateCartCount}/>
+      <ProductTable setCart={setCart} onUpdateCart={updateCartCount}/>
     </>
   )
 }

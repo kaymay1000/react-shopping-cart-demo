@@ -18,33 +18,25 @@ const ProductTable = (props) => {
       }
       return product;
     });
-
-    dispatch({
-      type: 'SET_PRODUCTS',
-      payload: newProducts
-    })
   }
 
   const toggleInStockOnly = () => {
     dispatch({
       type: 'SET_IN_STOCK_ONLY',
-      payload:
-        state.inStockOnly.active === true
-        ? {active: false}
-        : {active: true},
-    })
+      payload: !state.inStockOnly
+    });
   }
 
   const renderProducts = () => {
     let productsToRender = [];
     
-    // if state.inStockOnly.active is true, filter through 'products' array in state and only return products where stocked = true, then set productToRender to filtered array
-    // otherwise, state.inStockOnly.active is false, so set productsToRender to everything in products array
+    // if state.inStockOnly is true, filter through 'products' array in state and only return products where stocked = true, then set productToRender to filtered array
+    // otherwise, state.inStockOnly is false, so set productsToRender to everything in products array
     // map over productsToRender to generate desired Products
-    if (state.inStockOnly.active === true) {
-      productsToRender = props.products.filter(product => product.stocked);
+    if (state.inStockOnly) {
+      productsToRender = state.products.filter(product => product.stocked);
     } else {
-      productsToRender = props.products;
+      productsToRender = state.products;
     }
 
     return productsToRender.map((product) => {
