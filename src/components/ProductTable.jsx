@@ -10,7 +10,7 @@ const ProductTable = (props) => {
 
   const updateProductCount = (updatedProductName, isIncremented) => {
     // make a copy of array held in PRODUCTS data blob using spread syntax
-    const newProducts = [...props.products];
+    const newProducts = [...state.products];
     // find the product whose count was updated
     newProducts.forEach(product => {
       if (product.name === updatedProductName) {
@@ -18,8 +18,11 @@ const ProductTable = (props) => {
       }
       return product;
     });
-    // replace products array (initial state) with newProducts array
-    props.setProducts(newProducts);
+
+    dispatch({
+      type: 'SET_PRODUCTS',
+      payload: newProducts
+    })
   }
 
   const toggleInStockOnly = () => {
@@ -65,7 +68,6 @@ const ProductTable = (props) => {
         id="inStockOnly" 
         type="checkbox" 
         defaultChecked={false} 
-        // onChange={() => setInStockOnly(!inStockOnly)}
         onChange={toggleInStockOnly}
       />
       <label htmlFor="inStockOnly" style={checkboxStyle}>Only show in-stock items</label>

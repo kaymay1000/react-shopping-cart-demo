@@ -1,26 +1,31 @@
-import {useState, useEffect} from 'react';
-// import {AppContext} from '../providers/AppProvider';
+import {useState, useEffect, useContext} from 'react';
+import {AppContext} from '../providers/AppProvider';
 import { Link } from 'react-router-dom';
 import FETCH_DATA from '../data';
 import ProductTable from './ProductTable';
 
 const CreateOrder = (props) => {
-  // const [state, dispatch] = useContext(AppContext);
+  const [state, dispatch] = useContext(AppContext);
   const [cart, setCart] = useState(0);
-  const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [products, setProducts] = useState([]);
+  // const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = async () => {
     const response = await FETCH_DATA().then(res => res);
     if (response) {
-      setProducts(response);
-      setIsLoading(false);
+      console.log('fetchData response: ', response)
+      state.products = response;
+      console.log('state.products in fetchData: ', state.products)
     }
   }
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   const updateCartCount = () => {
     // make a copy of array held in PRODUCTS data blob using spread syntax
-    const newProducts = [...products];
+    const newProducts = [...state.products];
     // grab all products that have a count of at least 1
     const productsWithCount = newProducts.filter(product => product.count > 0);
     // initialize a variable to keep track of total products in cart, 
@@ -36,12 +41,9 @@ const CreateOrder = (props) => {
     // })
     setCart(totalProductsInCart);
   }
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  if (!products || isLoading) { return <p>Loading...</p> }
+  
+  // if (!state.products || isLoading) { return <p>Loading...</p> }
+  if (!state.products) { return <p>Loading...</p> }
 
   return (
     <>
@@ -51,7 +53,8 @@ const CreateOrder = (props) => {
         </Link>
       </div>
       <h1>Create Order</h1>
-      <ProductTable products={products} setProducts={setProducts} setCart={setCart} onUpdateCart={updateCartCount}/>
+      {/* <ProductTable products={state.products} setProducts={setProducts} setCart={setCart} onUpdateCart={updateCartCount}/> */}
+      <ProductTable products={state.products} setCart={setCart} onUpdateCart={updateCartCount}/>
     </>
   )
 }

@@ -7,11 +7,11 @@ const AppReducer = (state, action) => {
     //     ...state,
     //     cart: action.payload
     //   }
-    // case 'SET_PRODUCTS':
-    //   return {
-    //     ...state,
-    //     products: action.payload
-    //   }
+    case 'SET_PRODUCTS':
+      return {
+        ...state,
+        products: action.payload
+      }
     case 'SET_IN_STOCK_ONLY':
       return {
         ...state,
@@ -26,12 +26,7 @@ const initialState = {
   // cart: {
   //   count: 0
   // },
-  // products: {
-  //   product: {
-  //     stocked: true,
-  //     count: 0
-  //   }
-  // },
+  products: [],
   inStockOnly: {
     active: false
   }
