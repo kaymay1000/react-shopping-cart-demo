@@ -1,9 +1,11 @@
 import {useState, useEffect} from 'react';
+// import {AppContext} from '../providers/AppProvider';
 import { Link } from 'react-router-dom';
 import FETCH_DATA from '../data';
 import ProductTable from './ProductTable';
 
 const CreateOrder = (props) => {
+  // const [state, dispatch] = useContext(AppContext);
   const [cart, setCart] = useState(0);
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -24,9 +26,14 @@ const CreateOrder = (props) => {
     // initialize a variable to keep track of total products in cart, 
     // add up all current product count and update 'cart' state variable with the sum
     let totalProductsInCart = 0;
+ 
     productsWithCount.forEach(product => {
       totalProductsInCart += product.count;
     });
+    // dispatch({
+    //   type: 'SET_CART',
+    //   payload: {cart.count: totalProductsInCart}
+    // })
     setCart(totalProductsInCart);
   }
 
