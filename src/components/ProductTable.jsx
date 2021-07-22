@@ -4,10 +4,7 @@ import Product from './Product';
 import '../styles/productTable.css';
 
 const ProductTable = (props) => {
-  // console.log('AppContext in product table: ', AppContext)
   const [state, dispatch] = useContext(AppContext);
-  console.log('state in product table: ', state)
-  // const [inStockOnly, setInStockOnly] = useState(false);
   // example of how to pass css to the style attribute in React... css properties must be camelCased and stored in a JS object, then injected into JSX
   const checkboxStyle = {marginLeft: '10px'};
 
@@ -38,17 +35,14 @@ const ProductTable = (props) => {
   const renderProducts = () => {
     let productsToRender = [];
     
-    // if inStockOnly is true, filter through 'products' array in state and only return products where stocked = true, then set productToRender to filtered array
-    // otherwise, inStockOnly is false, so set productsToRender to everything in products array
+    // if state.inStockOnly.active is true, filter through 'products' array in state and only return products where stocked = true, then set productToRender to filtered array
+    // otherwise, state.inStockOnly.active is false, so set productsToRender to everything in products array
     // map over productsToRender to generate desired Products
-    console.log('state.instockonly in renderProducts', state.inStockOnly)
     if (state.inStockOnly.active === true) {
       productsToRender = props.products.filter(product => product.stocked);
     } else {
       productsToRender = props.products;
     }
-
-    productsToRender = props.products;
 
     return productsToRender.map((product) => {
       return (
