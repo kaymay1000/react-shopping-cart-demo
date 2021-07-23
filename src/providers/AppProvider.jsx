@@ -1,12 +1,16 @@
 import { createContext, useReducer } from "react";
 
 const AppReducer = (state, action) => {
+  console.log('state in reducer: ', state)
   switch (action.type) {
-    // case 'SET_CART':
-    //   return {
-    //     ...state,
-    //     cart: action.payload
-    //   }
+    case 'SET_CART':
+      return {
+        ...state,
+        cart: {
+          items: action.payload.items,
+          totalItemCount: action.payload.totalItemCount
+        }
+      }
     case 'SET_PRODUCTS':
       return {
         ...state,
@@ -23,7 +27,10 @@ const AppReducer = (state, action) => {
 }
 
 const initialState = {
-  // cart: 0
+  cart: {
+    items: [],
+    totalItemCount: 0
+  },
   products: [],
   inStockOnly: false
 }

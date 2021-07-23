@@ -6,7 +6,6 @@ import ProductTable from './ProductTable';
 
 const CreateOrder = (props) => {
   const [state, dispatch] = useContext(AppContext);
-  const [cart, setCart] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = async () => {
@@ -24,37 +23,19 @@ const CreateOrder = (props) => {
     fetchData();
   }, []);
 
-  const updateCartCount = () => {
-    // make a copy of array held in PRODUCTS data blob using spread syntax
-    const newProducts = [...state.products];
-    // grab all products that have a count of at least 1
-    const productsWithCount = newProducts.filter(product => product.count > 0);
-    // initialize a variable to keep track of total products in cart, 
-    // add up all current product count and update 'cart' state variable with the sum
-    let totalProductsInCart = 0;
- 
-    productsWithCount.forEach(product => {
-      totalProductsInCart += product.count;
-    });
-    // dispatch({
-    //   type: 'SET_CART',
-    //   payload: {cart.count: totalProductsInCart}
-    // })
-    setCart(totalProductsInCart);
-  }
-
   if (!state.products || isLoading) { return <p>Loading...</p> }
-  // if (!state.products) { return <p>Loading...</p> }
+
+  console.log('state.cart in createOrder: ', state.cart)
 
   return (
     <>
       <div className="send-right button-container">
         <Link to="/cart">
-          <button>Proceed to Cart ({cart})</button>
+          <button>Proceed to Cart ({state.cart.totalItemCount})</button>
         </Link>
       </div>
       <h1>Create Order</h1>
-      <ProductTable setCart={setCart} onUpdateCart={updateCartCount}/>
+      <ProductTable/>
     </>
   )
 }

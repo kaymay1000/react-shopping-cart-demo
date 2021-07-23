@@ -20,6 +20,29 @@ const ProductTable = (props) => {
     });
   }
 
+  const updateCartCount = () => {
+    // make a copy of array held in PRODUCTS data blob using spread syntax
+    const newProducts = [...state.products];
+    // grab all products that have a count of at least 1
+    const productsWithCount = newProducts.filter(product => product.count > 0);
+    // initialize a variable to keep track of total products in cart, 
+    // add up all current product count and update 'cart' state variable with the sum
+    let totalProductsInCart = 0;
+ 
+    productsWithCount.forEach(product => {
+      totalProductsInCart += product.count;
+    });
+
+    console.log('totalProductsInCart: ', totalProductsInCart)
+    dispatch({
+      type: 'SET_CART',
+      payload: {
+        items: productsWithCount, 
+        totalItemCount: totalProductsInCart
+      }
+    });
+  }
+
   const toggleInStockOnly = () => {
     dispatch({
       type: 'SET_IN_STOCK_ONLY',
@@ -47,8 +70,8 @@ const ProductTable = (props) => {
           price={product.price}
           stocked={product.stocked}
           count={product.count}
-          onUpdateCount={updateProductCount}
-          onUpdateCart={props.onUpdateCart}
+          updateProductCount={updateProductCount}
+          updateCartCount={updateCartCount}
         />
       )
     })
