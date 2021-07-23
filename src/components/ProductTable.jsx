@@ -33,7 +33,6 @@ const ProductTable = (props) => {
       totalProductsInCart += product.count;
     });
 
-    console.log('totalProductsInCart: ', totalProductsInCart)
     dispatch({
       type: 'SET_CART',
       payload: {
