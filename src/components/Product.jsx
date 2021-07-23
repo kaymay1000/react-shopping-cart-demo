@@ -13,8 +13,8 @@ const Product = (props) => {
         <button
           onClick={() => {
             // call two event handlers for the same event by wrapping in an arrow function
-            props.onUpdateCount(props.name, false);
-            props.onUpdateCart();
+            props.updateProductCount(props.name, false);
+            props.updateCartCount();
           }}
           className="counterButton"
           disabled={props.count === 0}
@@ -23,8 +23,8 @@ const Product = (props) => {
         </button>
         <button
           onClick={() => {
-            props.onUpdateCount(props.name, true);
-            props.onUpdateCart();
+            props.updateProductCount(props.name, true);
+            props.updateCartCount();
           }}
           className="counterButton"
           disabled={!props.stocked}

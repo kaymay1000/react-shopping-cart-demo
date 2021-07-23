@@ -1,15 +1,16 @@
-import {useState} from 'react';
+import {useContext} from 'react';
+import {AppContext} from '../providers/AppProvider';
 import Product from './Product';
 import '../styles/productTable.css';
 
 const ProductTable = (props) => {
-  const [inStockOnly, setInStockOnly] = useState(false);
+  const [state, dispatch] = useContext(AppContext);
   // example of how to pass css to the style attribute in React... css properties must be camelCased and stored in a JS object, then injected into JSX
   const checkboxStyle = {marginLeft: '10px'};
 
   const updateProductCount = (updatedProductName, isIncremented) => {
     // make a copy of array held in PRODUCTS data blob using spread syntax
-    const newProducts = [...props.products];
+    const newProducts = [...state.products];
     // find the product whose count was updated
     newProducts.forEach(product => {
       if (product.name === updatedProductName) {
@@ -17,20 +18,47 @@ const ProductTable = (props) => {
       }
       return product;
     });
-    // replace products array (initial state) with newProducts array
-    props.setProducts(newProducts);
+  }
+
+  const updateCartCount = () => {
+    // make a copy of array held in PRODUCTS data blob using spread syntax
+    const newProducts = [...state.products];
+    // grab all products that have a count of at least 1
+    const productsWithCount = newProducts.filter(product => product.count > 0);
+    // initialize a variable to keep track of total products in cart, 
+    // add up all current product count and update 'cart' state variable with the sum
+    let totalProductsInCart = 0;
+ 
+    productsWithCount.forEach(product => {
+      totalProductsInCart += product.count;
+    });
+
+    dispatch({
+      type: 'SET_CART',
+      payload: {
+        items: productsWithCount, 
+        totalItemCount: totalProductsInCart
+      }
+    });
+  }
+
+  const toggleInStockOnly = () => {
+    dispatch({
+      type: 'SET_IN_STOCK_ONLY',
+      payload: !state.inStockOnly
+    });
   }
 
   const renderProducts = () => {
     let productsToRender = [];
     
-    // if inStockOnly is true, filter through 'products' array in state and only return products where stocked = true, then set productToRender to filtered array
-    // otherwise, inStockOnly is false, so set productsToRender to everything in products array
+    // if state.inStockOnly is true, filter through 'products' array in state and only return products where stocked = true, then set productToRender to filtered array
+    // otherwise, state.inStockOnly is false, so set productsToRender to everything in products array
     // map over productsToRender to generate desired Products
-    if (inStockOnly) {
-      productsToRender = props.products.filter(product => product.stocked);
+    if (state.inStockOnly) {
+      productsToRender = state.products.filter(product => product.stocked);
     } else {
-      productsToRender = props.products;
+      productsToRender = state.products;
     }
 
     return productsToRender.map((product) => {
@@ -41,8 +69,8 @@ const ProductTable = (props) => {
           price={product.price}
           stocked={product.stocked}
           count={product.count}
-          onUpdateCount={updateProductCount}
-          onUpdateCart={props.onUpdateCart}
+          updateProductCount={updateProductCount}
+          updateCartCount={updateCartCount}
         />
       )
     })
@@ -50,12 +78,11 @@ const ProductTable = (props) => {
 
   return (
     <div className="productTableHeaderWrapper">
-      <h1>Shop</h1>
       <input 
         id="inStockOnly" 
         type="checkbox" 
         defaultChecked={false} 
-        onChange={() => setInStockOnly(!inStockOnly)}
+        onChange={toggleInStockOnly}
       />
       <label htmlFor="inStockOnly" style={checkboxStyle}>Only show in-stock items</label>
       <div className="productsTableWrapper">
