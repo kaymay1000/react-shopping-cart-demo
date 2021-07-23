@@ -1,7 +1,6 @@
 import { createContext, useReducer } from "react";
 
 const AppReducer = (state, action) => {
-  console.log('state in reducer: ', state)
   switch (action.type) {
     case 'SET_CART':
       return {
@@ -37,8 +36,6 @@ const initialState = {
 
 const AppProvider = ({children}) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
-  console.log('state within provider: ', state)
-
   return (
     <AppContext.Provider value={[state, dispatch]}>
       {children}

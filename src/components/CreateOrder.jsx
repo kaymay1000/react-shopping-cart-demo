@@ -25,8 +25,6 @@ const CreateOrder = (props) => {
 
   if (!state.products || isLoading) { return <p>Loading...</p> }
 
-  console.log('state.cart in createOrder: ', state.cart)
-
   return (
     <>
       <div className="send-right button-container">
